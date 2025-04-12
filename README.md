@@ -1,0 +1,1 @@
+Este proyecto surge de la necesidad explícita de modernizar y automatizar el sistema de reservas para garantizar un acceso ágil, justo y transparente a los espacios deportivos, al tiempo que se optimiza la administración de estos escenarios.
