@@ -1,0 +1,63 @@
+<div class="reservas-container">
+  <h2 class="titulo-principal">Reservar Escenario Deportivo</h2>
+
+  <div class="escenarios-container">
+    <div class="escenario-item" *ngFor="let escenario of escenarios">
+      <div class="escenario-header" (click)="toggleEscenario(escenario)">
+        <div class="escenario-info">
+          <h3>{{ escenario.nombre }}</h3>
+          <span class="estado" [class.disponible]="escenario.disponible" [class.no-disponible]="!escenario.disponible">
+            {{ escenario.disponible ? 'Disponible' : 'No disponible' }}
+          </span>
+        </div>
+        <span class="flecha">{{ escenarioSeleccionado === escenario.nombre ? '▲' : '▼' }}</span>
+      </div>
+      
+      <div class="escenario-detalle" *ngIf="escenarioSeleccionado === escenario.nombre && escenario.disponible">
+        <div class="formulario-reserva">
+          <div class="form-group">
+            <label>Fecha:</label>
+            <input type="date" 
+                  [(ngModel)]="reserva.fecha" 
+                  class="form-control"
+                  [min]="fechaActual | date:'yyyy-MM-dd'">
+          </div>
+
+          <div class="form-group">
+            <label>Hora:</label>
+            <select [(ngModel)]="reserva.hora" class="form-control">
+              <option value="" disabled selected>Seleccione una hora</option>
+              <option *ngFor="let h of horasDisponibles" 
+                      [value]="h"
+                      [disabled]="esHoraPasada(h)">
+                {{ h }}
+              </option>
+            </select>
+          </div>
+
+          <button class="btn-reservar" (click)="hacerReserva(escenario.nombre)" [disabled]="!reserva.fecha || !reserva.hora">
+          Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subtitulo">Mis Reservas</h3>
+
+<div *ngIf="reservas.length > 0; else sinReservas">
+  <div class="reserva-item" *ngFor="let reserva of reservas">
+    <div class="reserva-datos">
+      <span class="reserva-fecha">{{ reserva.fecha }}</span>
+      <span class="reserva-hora">{{ reserva.horaInicio }}</span>
+      <span class="reserva-escenario">{{ reserva.nombreEscenario }}</span>
+    </div>
+    
+  </div>
+</div>
+
+<ng-template #sinReservas>
+  <div class="sin-reservas">
+    <p>No tienes reservas actualmente</p>
+  </div>
+</ng-template>

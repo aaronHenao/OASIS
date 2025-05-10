@@ -1,0 +1,203 @@
+/* Estilos generales */
+.reservas-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo-principal {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.subtitulo {
+  color: #2c3e50;
+  margin: 30px 0 15px;
+  font-size: 22px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+}
+
+/* Estilos para los escenarios */
+.escenarios-container {
+  margin-bottom: 40px;
+}
+
+.escenario-item {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.escenario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.escenario-header:hover {
+  background-color: #e9ecef;
+}
+
+.escenario-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.escenario-info h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.estado {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.estado.disponible {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado.no-disponible {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.flecha {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Estilos para el formulario de reserva */
+.escenario-detalle {
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+}
+
+.formulario-reserva {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-control {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.btn-reservar {
+  padding: 8px 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-reservar:hover {
+  background-color: #2980b9;
+}
+
+.btn-reservar:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+/* Estilos para la lista de reservas */
+.reserva-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.reserva-datos {
+  display: flex;
+  gap: 20px;
+}
+
+.reserva-fecha {
+  color: #2c3e50;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.reserva-hora {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.reserva-escenario {
+  color: #7f8c8d;
+}
+
+
+
+/* Estilo cuando no hay reservas */
+.sin-reservas {
+  text-align: center;
+  padding: 20px;
+  color: #95a5a6;
+  font-style: italic;
+}
+
+/* Estilos básicos para SweetAlert */
+.swal2-popup {
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.swal2-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+} 
+
+.swal2-confirm {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+/* Contenedor del mensaje */
+.swal2-html-container {
+  margin: 1rem 0 !important;
+}
+/* Estilo para opciones deshabilitadas en el select */
+option:disabled {
+  color: #ccc;
+  background-color: #f8f9fa;
+}

@@ -60,3 +60,20 @@
   .logout-btn:hover {
     background: #c0392b;
   }
+
+  .ir-reservas-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.ir-reservas-btn:hover {
+  background: #2980b9;
+}
