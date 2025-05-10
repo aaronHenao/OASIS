@@ -133,51 +133,45 @@
 }
 
 /* Estilos para la lista de reservas */
-.reserva-card {
+.reserva-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: #f8f9fa;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
 }
 
-.reserva-info {
+.reserva-datos {
   display: flex;
   gap: 20px;
-  align-items: center;
 }
 
-.fecha, .hora, .escenario {
-  font-size: 14px;
-}
-
-.fecha {
+.reserva-fecha {
   color: #2c3e50;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.reserva-hora {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 8px;
+  border-radius: 4px;
   font-weight: 500;
 }
 
-.hora {
-  background-color: #e3f2fd;
-  padding: 3px 8px;
-  border-radius: 4px;
-  color: #1976d2;
-}
-
-.escenario {
-  color: #6c757d;
+.reserva-escenario {
+  color: #7f8c8d;
 }
 
 
+
+/* Estilo cuando no hay reservas */
 .sin-reservas {
   text-align: center;
-  color: #6c757d;
-  font-style: italic;
   padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 6px;
+  color: #95a5a6;
+  font-style: italic;
 }
 
 /* Estilos básicos para SweetAlert */

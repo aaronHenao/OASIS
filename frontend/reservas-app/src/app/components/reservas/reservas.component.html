@@ -44,18 +44,20 @@
   </div>
 
   <h3 class="subtitulo">Mis Reservas</h3>
-  
-  <div *ngIf="reservas.length > 0; else sinReservas">
-    <div class="reserva-card" *ngFor="let r of reservas">
-      <div class="reserva-info">
-        <span class="fecha">{{ r.fecha | date:'mediumDate' }}</span>
-        <span class="hora">{{ r.hora }}</span>
-        <span class="escenario">{{ r.escenario }}</span>
-      </div>
+
+<div *ngIf="reservas.length > 0; else sinReservas">
+  <div class="reserva-item" *ngFor="let reserva of reservas">
+    <div class="reserva-datos">
+      <span class="reserva-fecha">{{ reserva.fecha }}</span>
+      <span class="reserva-hora">{{ reserva.horaInicio }}</span>
+      <span class="reserva-escenario">{{ reserva.nombreEscenario }}</span>
     </div>
+    
   </div>
-  
-  <ng-template #sinReservas>
-    <p class="sin-reservas">No tienes reservas actualmente</p>
-  </ng-template>
 </div>
+
+<ng-template #sinReservas>
+  <div class="sin-reservas">
+    <p>No tienes reservas actualmente</p>
+  </div>
+</ng-template>
