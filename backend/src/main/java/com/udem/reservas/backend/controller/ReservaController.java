@@ -20,9 +20,13 @@ public class ReservaController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<Reserva> crear(@RequestBody CrearReservaDto dto) {
+    public ResponseEntity<?> crear(@RequestBody CrearReservaDto dto) {
+        try {
         Reserva reserva = service.crear(dto);
         return ResponseEntity.ok(reserva);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/usuario/{correoUsuario}")

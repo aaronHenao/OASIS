@@ -2,7 +2,10 @@ package com.udem.reservas.backend.service;
 
 import com.udem.reservas.backend.dto.CrearReservaDto;
 import com.udem.reservas.backend.model.Reserva;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,17 @@ public class ReservaService {
     private final List<Reserva> reservas = new ArrayList<>();
 
     public Reserva crear(CrearReservaDto dto) {
+
+        boolean yaReservado = reservas.stream().anyMatch(r ->
+        
+        r.getFecha().equals(dto.getFecha()) &&
+        r.getHoraInicio().equals(dto.getHoraInicio())
+    );
+
+    if (yaReservado) {
+        throw new IllegalStateException("Ya existe una reserva para esa fecha y hora");
+    }
+
         Reserva reserva = new Reserva(
             dto.getCorreoUsuario(),
             dto.getNombreEscenario(),

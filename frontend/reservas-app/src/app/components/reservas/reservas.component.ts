@@ -77,6 +77,15 @@ export class ReservasComponent implements OnInit {
       this.mostrarError('No puedes reservar en fechas/horas pasadas');
       return;
     }
+      //  Verificar si ya hay una reserva en ese horario
+    const yaReservado = this.reservas.some(r =>
+      r.fecha === this.reserva.fecha && r.horaInicio === this.reserva.hora
+    );
+
+    if (yaReservado) {
+      this.mostrarError('Ya tienes una reserva para esa fecha y hora');
+      return;
+    }
 
     const dto = {
       correoUsuario: usuario.correoInstitucional,
@@ -94,7 +103,15 @@ export class ReservasComponent implements OnInit {
         this.escenarioSeleccionado = null;
       },
       error: (err) => {
-        this.mostrarError(err.error?.message || 'Error al realizar la reserva');
+        if (err.status === 409) {
+            this.mostrarError(typeof err.error === 'string' ? err.error : 'Error al realizar la reserva');    
+          } else {
+            this.mostrarError('Ocurrió un error al realizar la reserva');
+          }
+          this.cargarReservasUsuario();
+        this.reserva.fecha = '';
+        this.reserva.hora = '';
+        this.escenarioSeleccionado = null;
       }
     });
   }
