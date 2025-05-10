@@ -1,38 +1,31 @@
 package com.udem.reservas.backend.service;
 
-import com.udem.reservas.backend.model.Escenario;
+import com.udem.reservas.backend.dto.CrearReservaDto;
 import com.udem.reservas.backend.model.Reserva;
 import org.springframework.stereotype.Service;
 
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservaService {
+    private final List<Reserva> reservas = new ArrayList<>();
 
-    private final EscenarioService escenarioService;
-
-    public ReservaService(EscenarioService escenarioService) {
-        this.escenarioService = escenarioService;
+    public Reserva crear(CrearReservaDto dto) {
+        Reserva reserva = new Reserva(
+            dto.getCorreoUsuario(),
+            dto.getNombreEscenario(),
+            dto.getFecha(),
+            dto.getHoraInicio()
+        );
+        reservas.add(reserva);
+        return reserva;
     }
 
-    // Método para hacer una reserva
-    public boolean hacerReserva(String correoUsuario, String nombreEscenario, String fecha, String horaInicio) {
-        Escenario escenario = escenarioService.buscarPorNombre(nombreEscenario);
-        if (escenario == null) {
-            return false; // Escenario no encontrado
-        }
-
-        Reserva reserva = new Reserva(correoUsuario, nombreEscenario, fecha, horaInicio, "Confirmada");
-        return escenario.agregarReserva(reserva);
-    }
-
-    // Método para ver las reservas de un escenario
-    public List<Reserva> obtenerReservasPorEscenario(String nombreEscenario) {
-        Escenario escenario = escenarioService.buscarPorNombre(nombreEscenario);
-        if (escenario != null) {
-            return escenario.getReservas();
-        }
-        return null;
+    public List<Reserva> obtenerPorUsuario(String correoUsuario) {
+        return reservas.stream()
+            .filter(r -> r.getCorreoUsuario().equalsIgnoreCase(correoUsuario))
+            .collect(Collectors.toList());
     }
 }

@@ -25,4 +25,10 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.router.navigate(['/inicio']);
   }
+
+  getUsuarioActual() {
+    const userJson = localStorage.getItem('currentUser');
+    return userJson ? JSON.parse(userJson) : null;
+  }
+
 }

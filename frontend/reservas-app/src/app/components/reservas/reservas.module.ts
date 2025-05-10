@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ReservasComponent } from './reservas.component';
 import { ReservasRoutingModule } from './reservas-routing.module';
+import { ReservasComponent } from './reservas.component';
 
 @NgModule({
   declarations: [ReservasComponent],
@@ -10,7 +10,6 @@ import { ReservasRoutingModule } from './reservas-routing.module';
     CommonModule,
     FormsModule,
     ReservasRoutingModule
-  ],
-  exports: [ReservasComponent]
+  ]
 })
-export class ReservasModule {}
+export class ReservasModule { }

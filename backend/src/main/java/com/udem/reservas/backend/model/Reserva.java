@@ -1,60 +1,32 @@
 package com.udem.reservas.backend.model;
 
-
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Reserva {
     private String correoUsuario;
     private String nombreEscenario;
-    private String fecha;
-    private String horaInicio;
-    private String estado;
+    private LocalDate fecha;
+    private LocalTime horaInicio;
 
-    public Reserva(String correoUsuario, String nombreEscenario, String fecha, String horaInicio, String estado) {
+    public Reserva() {}
+
+    public Reserva(String correoUsuario, String nombreEscenario, LocalDate fecha, LocalTime horaInicio) {
         this.correoUsuario = correoUsuario;
         this.nombreEscenario = nombreEscenario;
         this.fecha = fecha;
         this.horaInicio = horaInicio;
-        this.estado = estado;
     }
 
-    // Getters y Setters
-    public String getCorreoUsuario() {
-        return correoUsuario;
-    }
+    public String getCorreoUsuario() { return correoUsuario; }
+    public void setCorreoUsuario(String correoUsuario) { this.correoUsuario = correoUsuario; }
 
-    public void setCorreoUsuario(String correoUsuario) {
-        this.correoUsuario = correoUsuario;
-    }
+    public String getNombreEscenario() { return nombreEscenario; }
+    public void setNombreEscenario(String nombreEscenario) { this.nombreEscenario = nombreEscenario; }
 
-    public String getNombreEscenario() {
-        return nombreEscenario;
-    }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
-    public void setNombreEscenario(String nombreEscenario) {
-        this.nombreEscenario = nombreEscenario;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHoraInicio() {
-        return horaInicio;
-    }
-
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+    public LocalTime getHoraInicio() { return horaInicio; }
+    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
 }

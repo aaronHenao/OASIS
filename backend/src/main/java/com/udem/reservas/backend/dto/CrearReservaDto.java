@@ -1,45 +1,23 @@
-    package com.udem.reservas.backend.dto;
+package com.udem.reservas.backend.dto;
 
-   
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    public class CrearReservaDto {
-        private String correoUsuario;
-        private String nombreEscenario;
-        private String fecha;
-        private String horaInicio;
+public class CrearReservaDto {
+    private String correoUsuario;
+    private String nombreEscenario;
+    private LocalDate fecha;
+    private LocalTime horaInicio;
 
-        public CrearReservaDto() {
-        }
+    public String getCorreoUsuario() { return correoUsuario; }
+    public void setCorreoUsuario(String correoUsuario) { this.correoUsuario = correoUsuario; }
 
-        public String getCorreoUsuario() {
-            return correoUsuario;
-        }
+    public String getNombreEscenario() { return nombreEscenario; }
+    public void setNombreEscenario(String nombreEscenario) { this.nombreEscenario = nombreEscenario; }
 
-        public void setCorreoUsuario(String correoUsuario) {
-            this.correoUsuario = correoUsuario;
-        }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
-        public String getNombreEscenario() {
-            return nombreEscenario;
-        }
-
-        public void setNombreEscenario(String nombreEscenario) {
-            this.nombreEscenario = nombreEscenario;
-        }
-
-        public String getFecha() {
-            return fecha;
-        }
-
-        public void setFecha(String fecha) {
-            this.fecha = fecha;
-        }
-
-        public String getHoraInicio() {
-            return horaInicio;
-        }
-
-        public void setHoraInicio(String horaInicio) {
-            this.horaInicio = horaInicio;
-        }
-    }
+    public LocalTime getHoraInicio() { return horaInicio; }
+    public void setHoraInicio(LocalTime horaInicio) { this.horaInicio = horaInicio; }
+}

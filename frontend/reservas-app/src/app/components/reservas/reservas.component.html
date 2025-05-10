@@ -17,19 +17,26 @@
         <div class="formulario-reserva">
           <div class="form-group">
             <label>Fecha:</label>
-            <input type="date" [(ngModel)]="reserva.fecha" class="form-control">
+            <input type="date" 
+                  [(ngModel)]="reserva.fecha" 
+                  class="form-control"
+                  [min]="fechaActual | date:'yyyy-MM-dd'">
           </div>
 
           <div class="form-group">
             <label>Hora:</label>
             <select [(ngModel)]="reserva.hora" class="form-control">
               <option value="" disabled selected>Seleccione una hora</option>
-              <option *ngFor="let h of horasDisponibles" [value]="h">{{ h }}</option>
+              <option *ngFor="let h of horasDisponibles" 
+                      [value]="h"
+                      [disabled]="esHoraPasada(h)">
+                {{ h }}
+              </option>
             </select>
           </div>
 
           <button class="btn-reservar" (click)="hacerReserva(escenario.nombre)" [disabled]="!reserva.fecha || !reserva.hora">
-            Reservar
+          Reservar
           </button>
         </div>
       </div>

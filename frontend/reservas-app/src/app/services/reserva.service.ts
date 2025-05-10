@@ -1,21 +1,23 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reserva } from '../models/reserva.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservaService {
-  private apiUrl = 'http://localhost:8080/reservas'; 
+  private apiUrl = 'http://localhost:8080/api/reservas';
 
   constructor(private http: HttpClient) {}
 
-  crearReserva(reserva: Reserva): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/crear`, reserva);
+  crearReserva(reserva: any): Observable<any> {
+    console.log('URL completa:', `${this.apiUrl}/crear`);
+    console.log('Datos enviados:', reserva);
+    return this.http.post<any>(`${this.apiUrl}/crear`, reserva);
   }
 
-  obtenerReservasUsuario(correo: string): Observable<Reserva[]> {
-    return this.http.get<Reserva[]>(`${this.apiUrl}/usuario/${correo}`);
+  getReservasPorUsuario(correo: string): Observable<any[]> {
+    
+    return this.http.get<any[]>(`${this.apiUrl}/usuario/${correo}`);
   }
 }

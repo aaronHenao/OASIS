@@ -179,3 +179,31 @@
   background-color: #f8f9fa;
   border-radius: 6px;
 }
+
+/* Estilos básicos para SweetAlert */
+.swal2-popup {
+  border-radius: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.swal2-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+} 
+
+.swal2-confirm {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+/* Contenedor del mensaje */
+.swal2-html-container {
+  margin: 1rem 0 !important;
+}
+/* Estilo para opciones deshabilitadas en el select */
+option:disabled {
+  color: #ccc;
+  background-color: #f8f9fa;
+}
