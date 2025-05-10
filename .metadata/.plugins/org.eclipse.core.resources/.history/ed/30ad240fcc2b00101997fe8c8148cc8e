@@ -1,0 +1,5 @@
+package com.udem.reservas.backend.dto;
+
+public class LoginUsuarioDto {
+
+}

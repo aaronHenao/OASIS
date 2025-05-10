@@ -1,0 +1,60 @@
+1:40:25 Memory Pressure: Moderate
+1:40:35 Memory Pressure: Moderate
+1:40:45 Memory Pressure: Moderate
+1:40:55 Memory Pressure: Moderate
+1:41:05 Memory Pressure: Moderate
+1:41:20 Memory Pressure: Moderate
+1:41:30 Memory Pressure: Moderate
+1:41:40 Memory Pressure: Moderate
+1:41:50 Memory Pressure: Moderate
+1:42:00 Memory Pressure: Moderate
+1:42:10 Memory Pressure: Moderate
+1:42:20 Memory Pressure: Moderate
+1:42:45 Memory Pressure: Moderate
+1:51:56 Memory Pressure: Moderate
+1:56:02 Memory Pressure: Moderate
+1:59:02 Memory Pressure: Moderate
+2:01:27 Memory Pressure: Moderate
+2:01:37 Memory Pressure: Moderate
+2:01:47 Memory Pressure: Moderate
+2:02:02 Memory Pressure: Moderate
+2:02:12 Memory Pressure: Moderate
+2:02:22 Memory Pressure: Moderate
+2:03:52 Memory Pressure: Moderate
+2:04:07 Memory Pressure: Moderate
+2:05:02 Memory Pressure: Moderate
+2:05:12 Memory Pressure: Moderate
+2:05:22 Memory Pressure: Moderate
+2:05:32 Memory Pressure: Moderate
+2:05:42 Memory Pressure: Moderate
+2:05:57 Memory Pressure: Moderate
+2:06:07 Memory Pressure: Moderate
+2:06:17 Memory Pressure: Moderate
+2:06:27 Memory Pressure: Moderate
+2:07:23 Memory Pressure: Moderate
+2:09:43 Memory Pressure: Moderate
+2:14:18 Memory Pressure: Moderate
+2:16:28 Memory Pressure: Moderate
+2:21:14 Memory Pressure: Moderate
+2:21:29 Memory Pressure: Moderate
+2:21:39 Memory Pressure: Moderate
+2:22:09 Memory Pressure: Moderate
+2:25:19 Memory Pressure: Moderate
+2:26:44 Memory Pressure: Moderate
+2:26:54 Memory Pressure: Moderate
+2:30:20 Memory Pressure: Moderate
+2:30:30 Memory Pressure: Moderate
+2:30:45 Memory Pressure: Moderate
+2:31:20 Memory Pressure: Moderate
+2:31:30 Memory Pressure: Moderate
+2:31:40 Memory Pressure: Moderate
+2:32:15 Memory Pressure: Moderate
+2:36:00 Microsoft.Shutdown.TabStripModel.SendDetachWebContentsNotifications
+2:36:01 Browser2 Close Tab2 at 0
+2:36:01 Tab2 WebContentsDestroyed
+2:36:01 Microsoft.Shutdown.OnWindowClosing
+2:36:01 Microsoft.Shutdown.OnWindowClosing_MaybeClearBrowsingDataOnExit
+2:36:01 Microsoft.Shutdown.OnWindowClosing_ClearBrowsingDataOnExitNotInProgress
+2:36:01 Microsoft.Shutdown.OnWindowClosingPostClearBrowsingData_NoBrowsingDataCleared
+2:36:01 Widget Closed: BrowserFrame
+2:36:01 Microsoft.Browser_Removed

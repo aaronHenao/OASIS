@@ -1,0 +1,20 @@
+package com.udem.reservas.backend.controller;
+
+import com.udem.reservas.backend.service.WelcomeService;
+import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@RestController
+@RequestMapping("/api/welcome")
+@CrossOrigin(origins = "*")
+public class WelcomeController {
+
+    @Autowired
+    private WelcomeService welcomeService;
+
+    @GetMapping
+    public String saludar() {
+        return welcomeService.generarMensajeBienvenida();
+    }
+}

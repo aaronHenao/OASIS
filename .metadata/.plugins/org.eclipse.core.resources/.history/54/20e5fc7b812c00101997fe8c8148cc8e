@@ -1,0 +1,38 @@
+package com.udem.reservas.backend.service;
+
+import com.udem.reservas.backend.dto.CrearUsuarioDto;
+import com.udem.reservas.backend.dto.LoginUsuarioDto;
+import com.udem.reservas.backend.model.Usuario;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class UsuarioService {
+    private List<Usuario> usuarios = new ArrayList<>();
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public Usuario registrar(CrearUsuarioDto dto) {
+        // Validar correo único
+        if(usuarios.stream().anyMatch(u -> u.getCorreoInstitucional().equalsIgnoreCase(dto.getCorreoInstitucional()))) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Correo ya registrado");
+        }
+        
+        Usuario usuario = new Usuario(
+            dto.getNombre(),
+            dto.getApellidos(),
+            dto.getCedula(),
+            dto.getCorreoInstitucional()
+        );
+        usuarios.add(usuario);
+        return usuario;
+    }
+
+    public Usuario login(LoginUsuarioDto dto) {
+        return usuarios.stream()
+            .filter(u -> u.getCorreoInstitucional().equalsIgnoreCase(dto.getCorreoInstitucional()))
+            .findFirst()
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas"));
+    }
+}

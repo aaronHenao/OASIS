@@ -1,0 +1,5 @@
+package com.udem.reservas.backend.model;
+
+public class Usuario {
+
+}

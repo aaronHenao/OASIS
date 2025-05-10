@@ -1,0 +1,63 @@
+package com.udem.reservas.backend.service;
+
+import com.udem.reservas.backend.dto.CrearUsuarioDto;
+import com.udem.reservas.backend.dto.LoginUsuarioDto;
+import com.udem.reservas.backend.model.Usuario;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class UsuarioService {
+    private final List<Usuario> usuarios = new ArrayList<>();
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public Usuario registrar(CrearUsuarioDto dto) {
+        // Validar correo único
+        if (usuarios.stream().anyMatch(u -> 
+            u.getCorreoInstitucional().equalsIgnoreCase(dto.getCorreoInstitucional()))) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST, 
+                "El correo institucional ya está registrado"
+            );
+        }
+        
+        // Crear nuevo usuario
+        Usuario usuario = new Usuario(
+            dto.getNombre(),
+            dto.getApellidos(),
+            dto.getCedula(),
+            dto.getCorreoInstitucional()
+        );
+        
+        usuarios.add(usuario);
+        return usuario;
+    }
+
+    public Usuario login(LoginUsuarioDto dto) {
+        Usuario usuario = usuarios.stream()
+            .filter(u -> u.getCorreoInstitucional()
+            .equalsIgnoreCase(dto.getCorreoInstitucional()))
+            .findFirst()
+            .orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.UNAUTHORIZED, 
+                "Credenciales inválidas"
+            ));
+        
+        // Aquí deberías verificar la contraseña si la guardas
+        // if (!passwordEncoder.matches(dto.getContrasena(), usuario.getContrasenaHash())) {
+        //     throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Contraseña incorrecta");
+        // }
+        
+        return usuario;
+    }
+
+    public List<Usuario> listarTodos() {
+        return new ArrayList<>(usuarios); // Retorna copia para evitar modificaciones externas
+    }
+}
