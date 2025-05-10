@@ -1,0 +1,29 @@
+<div class="profile-container">
+    <div class="profile-card">
+      <h2>Mi Perfil</h2>
+      
+      <div class="profile-info">
+        <div class="info-item">
+          <span class="label">Nombre:</span>
+          <span class="value">{{ usuario.nombre }}</span>
+        </div>
+  
+        <div class="info-item">
+          <span class="label">Apellidos:</span>
+          <span class="value">{{ usuario.apellidos }}</span>
+        </div>
+  
+        <div class="info-item">
+          <span class="label">Cédula:</span>
+          <span class="value">{{ usuario.cedula }}</span>
+        </div>
+  
+        <div class="info-item">
+          <span class="label">Correo:</span>
+          <span class="value">{{ usuario.correoInstitucional }}</span>
+        </div>
+      </div>
+  
+      <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>

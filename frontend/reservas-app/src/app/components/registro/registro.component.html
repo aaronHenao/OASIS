@@ -1,0 +1,41 @@
+<div class="register-container">
+    <div class="register-card">
+      <h2>Registro de Usuario</h2>
+      
+      <form (ngSubmit)="registrar()" class="register-form">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]="usuario.nombre" name="nombre" required>
+        </div>
+  
+        <div class="form-group">
+          <label>Apellidos</label>
+          <input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" required>
+        </div>
+  
+        <div class="form-group">
+          <label>Cédula</label>
+          <input type="text" [(ngModel)]="usuario.cedula" name="cedula" required>
+        </div>
+  
+        <div class="form-group">
+          <label>Correo Institucional</label>
+          <input type="email" [(ngModel)]="usuario.correoInstitucional" 
+                 name="correoInstitucional" required
+                 placeholder="ejemplo@soyudemedellin.edu.co">
+        </div>
+  
+        <div class="form-group">
+          <label>Contraseña (mínimo 6 caracteres)</label>
+          <input type="password" [(ngModel)]="usuario.contrasena" 
+                 name="contrasena" required minlength="6">
+        </div>
+  
+        <button type="submit" class="register-btn">Registrarse</button>
+        
+        <div class="login-link">
+          ¿Ya tienes cuenta? <a routerLink="/inicio">Inicia sesión</a>
+        </div>
+      </form>
+    </div>
+  </div>
