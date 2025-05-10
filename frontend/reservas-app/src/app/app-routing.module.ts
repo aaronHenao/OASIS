@@ -11,7 +11,7 @@ const routes: Routes = [
   { 
     path: 'inicio', 
     loadChildren: () => import('./components/inicio/inicio.module').then(m => m.InicioModule),
-    data: { hideHeader: true }
+    data: { hideHeader: true } 
   },
   { 
     path: 'registro', 
@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/perfil/perfil.module').then(m => m.PerfilModule),
     canActivate: [AuthGuard] 
   },
+  {
+    path: 'reservas',
+    loadChildren: () => import('./components/reservas/reservas.module').then(m => m.ReservasModule),
+    canActivate: [AuthGuard] // Corregido el typo aquí
+  },
   { 
     path: '**', 
     redirectTo: 'inicio' 
@@ -30,7 +35,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled'
+    scrollPositionRestoration: 'enabled',
+    enableTracing: false // Activar solo para debugging de rutas
   })],
   exports: [RouterModule]
 })

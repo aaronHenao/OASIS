@@ -28,4 +28,8 @@ export class PerfilComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/inicio']);
   }
+
+  irAReservas() {
+    this.router.navigate(['/reservas']);
+  }
 }
