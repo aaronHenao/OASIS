@@ -103,12 +103,11 @@ export class ReservasComponent implements OnInit {
         this.escenarioSeleccionado = null;
       },
       error: (err) => {
-        if (err.status === 409) {
-            this.mostrarError(typeof err.error === 'string' ? err.error : 'Error al realizar la reserva');    
-          } else {
-            this.mostrarError('Ocurrió un error al realizar la reserva');
-          }
-          this.cargarReservasUsuario();
+        const mensaje = typeof err.error === 'string'
+          ? err.error
+          : err.error?.message || 'Error al realizar la reserva';
+        this.mostrarError(mensaje);
+        this.cargarReservasUsuario();
         this.reserva.fecha = '';
         this.reserva.hora = '';
         this.escenarioSeleccionado = null;

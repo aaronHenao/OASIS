@@ -3,6 +3,8 @@ package com.udem.reservas.backend.controller;
 import com.udem.reservas.backend.dto.CrearReservaDto;
 import com.udem.reservas.backend.model.Reserva;
 import com.udem.reservas.backend.service.ReservaService;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +27,7 @@ public class ReservaController {
         Reserva reserva = service.crear(dto);
         return ResponseEntity.ok(reserva);
         } catch (IllegalStateException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
