@@ -201,3 +201,40 @@ option:disabled {
   color: #ccc;
   background-color: #f8f9fa;
 }
+
+.ir-perfil-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s;
+}
+.ir-perfil-btn:hover {
+  background: #2980b9;
+}
+.btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s;
+}
+
+.btn-danger {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+.btn-sm {
+  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+}

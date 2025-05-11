@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 export class InicioComponent implements OnInit {
   credenciales = {
     correoInstitucional: '',
-    contrasena: ''
+    contrasena: '',
+    tipo: ''
   };
   mostrarContenido = false;
 
@@ -54,28 +55,53 @@ export class InicioComponent implements OnInit {
       }
     });
   }
-  
 
   login() {
-    if (!this.credenciales.correoInstitucional || !this.credenciales.contrasena) {
+    if (!this.credenciales.correoInstitucional || !this.credenciales.contrasena || !this.credenciales.tipo) {
       Swal.fire('Error', 'Por favor completa todos los campos', 'error');
       return;
     }
 
-    this.authService.login(this.credenciales).subscribe({
+    // Validación para admin
+    if (this.credenciales.tipo === 'admin') {
+      if (
+        this.credenciales.correoInstitucional !== 'admin@udem.edu.co' ||
+        this.credenciales.contrasena !== 'admin123'
+      ) {
+        Swal.fire('Error', 'Credenciales de administrador incorrectas', 'error');
+        return;
+      }
+    }
+
+    this.authService.login({
+      correoInstitucional: this.credenciales.correoInstitucional,
+      contrasena: this.credenciales.contrasena
+    }).subscribe({
       next: (res: any) => {
         localStorage.setItem('currentUser', JSON.stringify(res));
-        
-        Swal.fire({
-          title: `¡Bienvenido/a ${res.nombre}!`,
-          text: 'Serás redirigido a tu perfil',
-          icon: 'success',
-          timer: 2000,
-          timerProgressBar: true,
-          showConfirmButton: false
-        }).then(() => {
-          this.router.navigate(['/perfil']); // Redirección a perfil
-        });
+        if (this.credenciales.tipo === 'admin') {
+          Swal.fire({
+            title: `¡Bienvenido/a Administrador!`,
+            text: 'Serás redirigido a la gestión de escenarios',
+            icon: 'success',
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false
+          }).then(() => {
+            this.router.navigate(['/admin-escenarios']);
+          });
+        } else {
+          Swal.fire({
+            title: `¡Bienvenido/a ${res.nombre}!`,
+            text: 'Serás redirigido a tu perfil',
+            icon: 'success',
+            timer: 2000,
+            timerProgressBar: true,
+            showConfirmButton: false
+          }).then(() => {
+            this.router.navigate(['/perfil']);
+          });
+        }
       },
       error: (err) => {
         const errorMessage = err.error?.message || 'Credenciales incorrectas';

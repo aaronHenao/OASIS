@@ -1,0 +1,25 @@
+<button class="ir-perfil-btn" (click)="irAPerfil()" style="margin-bottom: 20px;">
+    ← Volver al panel
+  </button>
+  
+  <div class="admin-usuarios-container">
+    <h2>Usuarios registrados</h2>
+    <table class="tabla-usuarios">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Cédula</th>
+          <th>Correo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellidos }}</td>
+          <td>{{ usuario.cedula }}</td>
+          <td>{{ usuario.correoInstitucional }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

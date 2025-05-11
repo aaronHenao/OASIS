@@ -1,0 +1,71 @@
+<button class="ir-perfil-btn" (click)="irAPerfil()" style="margin-bottom: 20px;">
+    ← Volver a mi perfil
+  </button>
+  <button class="btn btn-info" routerLink="/admin-usuarios" style="margin-left: 10px; margin-bottom: 20px;">
+    Ver usuarios
+  </button>
+  
+  <div class="admin-escenarios-container">
+    <h2>Gestión de Escenarios Deportivos</h2>
+  
+    <!-- Filtros de búsqueda y disponibilidad -->
+    <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+      <input type="text" [(ngModel)]="filtroNombre" placeholder="Buscar por nombre..." class="form-control">
+      <select [(ngModel)]="filtroDisponibilidad" class="form-control">
+        <option value="">Todos</option>
+        <option value="true">Solo disponibles</option>
+        <option value="false">Solo no disponibles</option>
+      </select>
+    </div>
+  
+    <form (ngSubmit)="editando ? guardarEdicion() : crearEscenario()" style="margin-bottom:2rem;">
+      <input type="text" [(ngModel)]="nuevoEscenario.nombre" name="nombre" placeholder="Nombre del escenario" required>
+      <input type="text" [(ngModel)]="nuevoEscenario.descripcion" name="descripcion" placeholder="Descripción" style="margin-left:10px;">
+      <label style="margin-left:10px;">
+        <input type="checkbox" [(ngModel)]="nuevoEscenario.disponible" name="disponible">
+        Disponible
+      </label>
+      <button type="submit" class="btn btn-primary">{{ editando ? 'Guardar' : 'Crear' }}</button>
+      <button *ngIf="editando" type="button" (click)="cancelarEdicion()" class="btn btn-secondary">Cancelar</button>
+    </form>
+  
+    <ul>
+      <li *ngFor="let escenario of escenarios | filtroEscenarios:filtroNombre:filtroDisponibilidad" style="margin-bottom:10px;">
+        <div>
+          <strong>{{ escenario.nombre }}</strong> - 
+          <span [ngClass]="{'text-success': escenario.disponible, 'text-danger': !escenario.disponible}">
+            {{ escenario.disponible ? 'Disponible' : 'No disponible' }}
+          </span>
+          <div *ngIf="escenario.descripcion" style="font-size:0.9em;color:#888;">{{ escenario.descripcion }}</div>
+        </div>
+        <button (click)="editarEscenario(escenario)" class="btn btn-warning btn-sm" style="margin-left:10px;">Editar</button>
+        <button (click)="eliminarEscenario(escenario.nombre)" class="btn btn-danger btn-sm" style="margin-left:5px;">Eliminar</button>
+        <button (click)="verReservasEscenario(escenario)" class="btn btn-info btn-sm" style="margin-left:5px;">Ver reservas</button>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Modal de reservas por escenario -->
+  <div *ngIf="mostrarModalReservas" class="modal-backdrop">
+    <div class="modal-content">
+      <h3>Reservas para: {{ escenarioSeleccionado?.nombre }}</h3>
+      <button class="btn btn-secondary" (click)="cerrarModalReservas()" style="float:right;">Cerrar</button>
+      <table *ngIf="reservasEscenario.length > 0" class="tabla-reservas">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reservasEscenario">
+            <td>{{ reserva.correoUsuario }}</td>
+            <td>{{ reserva.fecha }}</td>
+            <td>{{ reserva.horaInicio }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="reservasEscenario.length === 0" style="margin-top:1rem;">No hay reservas para este escenario.</div>
+    </div>
+  </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReservaService } from 'src/app/services/reserva.service';
 import { EscenarioService } from 'src/app/services/escenario.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,7 +30,8 @@ export class ReservasComponent implements OnInit {
   constructor(
     private reservaService: ReservaService,
     private escenarioService: EscenarioService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -53,10 +55,8 @@ export class ReservasComponent implements OnInit {
   }
 
   toggleEscenario(escenario: any) {
-  
-  this.escenarioSeleccionado = this.escenarioSeleccionado === escenario.nombre ? null : escenario.nombre;
-  
-}
+    this.escenarioSeleccionado = this.escenarioSeleccionado === escenario.nombre ? null : escenario.nombre;
+  }
 
   hacerReserva(nombreEscenario: string) {
     const usuario = this.authService.getUsuarioActual();
@@ -77,7 +77,7 @@ export class ReservasComponent implements OnInit {
       this.mostrarError('No puedes reservar en fechas/horas pasadas');
       return;
     }
-      //  Verificar si ya hay una reserva en ese horario
+    //  Verificar si ya hay una reserva en ese horario
     const yaReservado = this.reservas.some(r =>
       r.fecha === this.reserva.fecha && r.horaInicio === this.reserva.hora
     );
@@ -115,6 +115,45 @@ export class ReservasComponent implements OnInit {
     });
   }
 
+  // Saber si una reserva es futura (soporta HH:mm y HH:mm:ss)
+  esFutura(reserva: any): boolean {
+    let hora = reserva.horaInicio;
+    if (hora.length === 5) { // formato HH:mm
+      hora = hora + ':00';
+    }
+    const fechaHora = new Date(`${reserva.fecha}T${hora}`);
+    return fechaHora > new Date();
+  }
+
+  // Cancelar reserva
+  cancelarReserva(reserva: any) {
+    Swal.fire({
+      title: '¿Cancelar reserva?',
+      text: `¿Seguro que deseas cancelar la reserva del ${reserva.fecha} a las ${reserva.horaInicio}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, cancelar',
+      cancelButtonText: 'No'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.reservaService.cancelarReserva(reserva).subscribe({
+          next: () => {
+            this.cargarReservasUsuario();
+            Swal.fire('Cancelada', 'La reserva fue cancelada', 'success');
+          },
+          error: (err) => {
+            if (err.status === 404) {
+              this.cargarReservasUsuario();
+              Swal.fire('Atención', 'La reserva ya fue cancelada o no existe.', 'info');
+            } else {
+              Swal.fire('Error', 'No se pudo cancelar la reserva', 'error');
+            }
+          }
+        });
+      }
+    });
+  }
+
   // Obtiene la fecha actual en formato YYYY-MM-DD
   get fechaActual(): string {
     return new Date().toISOString().split('T')[0];
@@ -123,13 +162,11 @@ export class ReservasComponent implements OnInit {
   // Verifica si una hora es pasada para la fecha seleccionada
   esHoraPasada(hora: string): boolean {
     if (!this.reserva.fecha) return false;
-    
     const fechaSeleccionada = new Date(`${this.reserva.fecha}T${hora}:00`);
     return fechaSeleccionada < new Date();
   }
 
   private mostrarExito(nombreEscenario: string) {
-    
     Swal.fire({
       title: '¡Reserva Exitosa!',
       html: `
@@ -148,21 +185,23 @@ export class ReservasComponent implements OnInit {
   }
 
   private mostrarError(mensaje: string) {
-  Swal.fire({
-    title: 'Error en la reserva',
-    html: `
-      <div style="text-align: center;">
-        <svg width="80" height="80" viewBox="0 0 24 24" style="margin-bottom: 15px; color: #F44336;">
-          <path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
-        </svg>
-        <p style="font-size: 1.1rem; color: #721c24;">${mensaje}</p>
-        <p style="font-size: 0.9rem; margin-top: 10px;">Por favor, selecciona una fecha y hora válidas</p>
-      </div>
-    `,
-    confirmButtonText: 'Entendido',
-    confirmButtonColor: '#d33'
-  });
-}
+    Swal.fire({
+      title: 'Error en la reserva',
+      html: `
+        <div style="text-align: center;">
+          <svg width="80" height="80" viewBox="0 0 24 24" style="margin-bottom: 15px; color: #F44336;">
+            <path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/>
+          </svg>
+          <p style="font-size: 1.1rem; color: #721c24;">${mensaje}</p>
+          <p style="font-size: 0.9rem; margin-top: 10px;">Por favor, selecciona una fecha y hora válidas</p>
+        </div>
+      `,
+      confirmButtonText: 'Entendido',
+      confirmButtonColor: '#d33'
+    });
+  }
 
-
+  irAPerfil() {
+    this.router.navigate(['/perfil']);
+  }
 }

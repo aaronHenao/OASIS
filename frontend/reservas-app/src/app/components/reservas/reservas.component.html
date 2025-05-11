@@ -1,3 +1,7 @@
+<button class="ir-perfil-btn" (click)="irAPerfil()" style="margin-bottom: 20px;">
+  ← Volver a mi perfil
+</button>
+
 <div class="reservas-container">
   <h2 class="titulo-principal">Reservar Escenario Deportivo</h2>
 
@@ -36,7 +40,7 @@
           </div>
 
           <button class="btn-reservar" (click)="hacerReserva(escenario.nombre)" [disabled]="!reserva.fecha || !reserva.hora">
-          Reservar
+            Reservar
           </button>
         </div>
       </div>
@@ -45,19 +49,22 @@
 
   <h3 class="subtitulo">Mis Reservas</h3>
 
-<div *ngIf="reservas.length > 0; else sinReservas">
-  <div class="reserva-item" *ngFor="let reserva of reservas">
-    <div class="reserva-datos">
-      <span class="reserva-fecha">{{ reserva.fecha }}</span>
-      <span class="reserva-hora">{{ reserva.horaInicio }}</span>
-      <span class="reserva-escenario">{{ reserva.nombreEscenario }}</span>
+  <div *ngIf="reservas.length > 0; else sinReservas">
+    <div class="reserva-item" *ngFor="let reserva of reservas">
+      <div class="reserva-datos">
+        <span class="reserva-fecha">{{ reserva.fecha }}</span>
+        <span class="reserva-hora">{{ reserva.horaInicio }}</span>
+        <span class="reserva-escenario">{{ reserva.nombreEscenario }}</span>
+      </div>
+      <button *ngIf="esFutura(reserva)" class="btn btn-danger btn-sm" (click)="cancelarReserva(reserva)">
+        Cancelar
+      </button>
     </div>
-    
   </div>
-</div>
 
-<ng-template #sinReservas>
-  <div class="sin-reservas">
-    <p>No tienes reservas actualmente</p>
-  </div>
-</ng-template>
+  <ng-template #sinReservas>
+    <div class="sin-reservas">
+      <p>No tienes reservas actualmente</p>
+    </div>
+  </ng-template>
+</div>
