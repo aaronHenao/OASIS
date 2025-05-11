@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { AdminEscenariosComponent } from './components/admin-escenarios/admin-escenarios.component';
+import { AdminUsuariosComponent } from './components/admin-usuarios/admin-usuarios.component'; // Importa el nuevo componente
 
 const routes: Routes = [
   { 
@@ -25,7 +28,17 @@ const routes: Routes = [
   {
     path: 'reservas',
     loadChildren: () => import('./components/reservas/reservas.module').then(m => m.ReservasModule),
-    canActivate: [AuthGuard] // Corregido el typo aquí
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin-escenarios',
+    component: AdminEscenariosComponent,
+    canActivate: [AdminGuard]
+  },
+  {
+    path: 'admin-usuarios',
+    component: AdminUsuariosComponent,
+    canActivate: [AdminGuard]
   },
   { 
     path: '**', 
@@ -36,7 +49,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'enabled',
-    enableTracing: false // Activar solo para debugging de rutas
+    enableTracing: false
   })],
   exports: [RouterModule]
 })

@@ -1,0 +1,150 @@
+.admin-escenarios-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  input[type="text"] {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    min-width: 180px;
+  }
+  
+  label {
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  .btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+  }
+  
+  .btn-primary {
+    background: #3498db;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #2980b9;
+  }
+  
+  .btn-secondary {
+    background: #7f8c8d;
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background: #636e72;
+  }
+  
+  .btn-warning {
+    background: #f1c40f;
+    color: #2c3e50;
+  }
+  
+  .btn-warning:hover {
+    background: #f39c12;
+  }
+  
+  .btn-danger {
+    background: #e74c3c;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background: #c0392b;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  
+  .text-success {
+    color: #27ae60;
+  }
+  
+  .text-danger {
+    color: #e74c3c;
+  }
+  
+  .ir-perfil-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background 0.3s;
+  }
+  .ir-perfil-btn:hover {
+    background: #2980b9;
+  }
+  .modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2rem;
+    min-width: 350px;
+    max-width: 90vw;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .tabla-reservas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  .tabla-reservas th, .tabla-reservas td {
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+  .tabla-reservas th {
+    background: #f5f7fa;
+  }

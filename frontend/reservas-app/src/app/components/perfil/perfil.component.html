@@ -27,5 +27,11 @@
     <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
 
     <button class="ir-reservas-btn" (click)="irAReservas()">Ir a Reservas</button>
+    <button 
+      *ngIf="usuario.correoInstitucional === 'admin@udem.edu.co'" 
+      class="ir-reservas-btn" 
+      (click)="irAAdminEscenarios()">
+      Panel de administración
+    </button>
   </div>
 </div>

@@ -32,4 +32,8 @@ export class PerfilComponent implements OnInit {
   irAReservas() {
     this.router.navigate(['/reservas']);
   }
+
+  irAAdminEscenarios() {
+    this.router.navigate(['/admin-escenarios']);
+  }
 }
