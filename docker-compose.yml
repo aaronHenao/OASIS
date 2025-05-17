@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: oasis_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: oasisdb
+      MYSQL_USER: oasisuser
+      MYSQL_PASSWORD: oasispass
+    ports:
+      - "3307:3307"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: oasis_backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/oasisdb
+      SPRING_DATASOURCE_USERNAME: oasisuser
+      SPRING_DATASOURCE_PASSWORD: oasispass
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend/reservas-app
+      dockerfile: Dockerfile
+    container_name: oasis_frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+
+volumes:
+  db_data:
