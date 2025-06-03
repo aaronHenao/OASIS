@@ -47,12 +47,10 @@ Este repositorio contiene el frontend y backend del proyecto **OASIS**, una plat
 
 ### 2. Inicia Minikube
 - minikube start
-- 
 💡 Asegúrate de que Minikube esté usando el driver correcto (ej. docker, virtualbox, etc.)
 
 ### 3. Habilita el tunnel de Minikube (en una terminal separada)
 - Esto es necesario para exponer servicios NodePort: minikube tunnel
-
 Déjalo abierto
 
 ### 4. Construye y sube las imágenes Docker
@@ -78,12 +76,10 @@ Esto creará los Deployments y Services para mysql, backend y frontend.
 
 ### 6. Verifica los pods
 - kubectl get pods
-
 Espera a que todos estén en estado Running.
 
 ### 7. Accede a la aplicación
 - minikube service frontend
-
 Esto abrirá la aplicación Angular en tu navegador.
 
 ## 📝 Notas
