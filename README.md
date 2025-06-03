@@ -72,6 +72,12 @@ Déjalo abierto
 Asegúrate de haber hecho docker login antes de hacer push.
 
 ### 5. Despliega los recursos de Kubernetes
+En los archivos deployment para el backend y el frontend en las líneas:
+- image: aaronhenao/oasis-backend
+- image: aaronhenao/oasis-fronted
+
+Reemplaza aaronhenao por tu nombre de usuario en github
+
 - Desde la raíz del proyecto: kubectl apply -f k8s/
 
 Esto creará los Deployments y Services para mysql, backend y frontend.
