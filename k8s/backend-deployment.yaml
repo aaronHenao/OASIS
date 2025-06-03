@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oasis-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oasis-backend
+  template:
+    metadata:
+      labels:
+        app: oasis-backend
+    spec:
+      containers:
+        - name: backend
+          image: aaronhenao/oasis-backend
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/oasisdb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: oasisuser
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: oasispass
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: oasis-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
