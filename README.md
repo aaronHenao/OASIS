@@ -42,43 +42,48 @@ Este repositorio contiene el frontend y backend del proyecto **OASIS**, una plat
 ## 🚀 Pasos para ejecutar el proyecto
 
 ### 1. Clona el repositorio
-git clone https://github.com/tu-usuario/OASIS.git
-cd OASIS
+- git clone https://github.com/tu-usuario/OASIS.git
+- cd OASIS
 
 ### 2. Inicia Minikube
-minikube start
+- minikube start
+- 
 💡 Asegúrate de que Minikube esté usando el driver correcto (ej. docker, virtualbox, etc.)
 
 ### 3. Habilita el tunnel de Minikube (en una terminal separada)
-Esto es necesario para exponer servicios NodePort: minikube tunnel
+- Esto es necesario para exponer servicios NodePort: minikube tunnel
+
 Déjalo abierto
 
 ### 4. Construye y sube las imágenes Docker
 #### Backend: 
-cd backend
-docker build -t oasis-backend .
-docker tag oasis-backend tu-usuario/oasis-backend
-docker push tu-usuario/oasis-backend
+- cd backend
+- docker build -t oasis-backend .
+- docker tag oasis-backend tu-usuario/oasis-backend
+- docker push tu-usuario/oasis-backend
 
 #### Frontend:
-cd ../frontend/reservas-app
-docker build -t oasis-frontend .
-docker tag oasis-frontend tu-usuario/oasis-frontend
-docker push tu-usuario/oasis-frontend
+- cd ../frontend/reservas-app
+- docker build -t oasis-frontend .
+- docker tag oasis-frontend tu-usuario/oasis-frontend
+- docker push tu-usuario/oasis-frontend
 
 🔐 Reemplaza tu-usuario con tu usuario real de Docker Hub.
 Asegúrate de haber hecho docker login antes de hacer push.
 
 ### 5. Despliega los recursos de Kubernetes
-Desde la raíz del proyecto: kubectl apply -f k8s/
+- Desde la raíz del proyecto: kubectl apply -f k8s/
+
 Esto creará los Deployments y Services para mysql, backend y frontend.
 
 ### 6. Verifica los pods
-kubectl get pods
+- kubectl get pods
+
 Espera a que todos estén en estado Running.
 
 ### 7. Accede a la aplicación
-minikube service frontend
+- minikube service frontend
+
 Esto abrirá la aplicación Angular en tu navegador.
 
 ## 📝 Notas
