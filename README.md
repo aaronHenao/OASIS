@@ -76,7 +76,7 @@ En los archivos deployment para el backend y el frontend en las líneas:
 - image: aaronhenao/oasis-backend
 - image: aaronhenao/oasis-fronted
 
-Reemplaza aaronhenao por tu nombre de usuario en github
+Reemplaza aaronhenao por tu nombre de usuario en Dockerhub
 
 - Desde la raíz del proyecto: kubectl apply -f k8s/
 
