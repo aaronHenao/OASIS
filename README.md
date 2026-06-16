@@ -48,7 +48,7 @@ Este repositorio contiene el frontend y backend del proyecto **OASIS**, una plat
 ## 🚀 Pasos para ejecutar el proyecto
 
 ### 1. Clona el repositorio
-- git clone https://github.com/tu-usuario/OASIS.git
+- git clone https://github.com/aaronHenao/OASIS.git
 - cd OASIS
 
 ### 2. Inicia Minikube
@@ -151,7 +151,7 @@ This repository contains the frontend and backend of the **OASIS** project, a pl
 ## 🚀 Steps to run the project
 
 ### 1. Clone the repository
-- git clone https://github.com/tu-usuario/OASIS.git
+- git clone https://github.com/aaronHenao/OASIS.git
 - cd OASIS
 
 ### 2. Start Minikube
